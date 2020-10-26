@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
+
     tools:context=".impl.RegisterActivity">
 
     <include
@@ -135,7 +136,16 @@
         android:hint="专业"
         android:paddingLeft="15dp"
         android:paddingRight="15dp" />
-
+    <CheckBox
+        android:id="@+id/cb_SorT"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/major_register"
+        android:textColor="@color/colorAccent"
+        android:layout_marginStart="15dp"
+        android:text="注册教师"
+        android:layout_marginBottom="15dp"
+        />
     <Button
         android:textSize="20sp"
         android:textColor="@color/colorWhite"
@@ -146,7 +156,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="注册"
-        android:layout_marginTop="134dp"
-        android:layout_below="@+id/school_register" />
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/cb_SorT" />
 
 </RelativeLayout>

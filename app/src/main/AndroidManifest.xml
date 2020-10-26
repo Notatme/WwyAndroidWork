@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".impl.ZhuYeActivity"></activity>
+        <activity android:name=".impl.SetSignActivity"></activity>
+        <activity android:name=".impl.ZhuYeActivity" />
         <activity android:name=".impl.RegisterActivity" />
 
         <provider

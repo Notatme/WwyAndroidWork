@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".impl.SetSignActivity">
+    <include
+        android:id="@+id/main_title"
+        layout="@layout/title_layout" />
+    <TextView
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:id="@+id/tishi"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="设置签到码"
+    android:layout_below="@id/main_title"
+        />
+    <EditText
+        android:id="@+id/Setcode"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/tishi"
+        android:background="@color/colorWhite"
+        android:hint="签到码"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp" />
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:layout_margin="10dp"
+        android:id="@+id/siginCode"
+        android:layout_below="@+id/Setcode"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
+        android:text="设定签到码"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+
+</RelativeLayout>

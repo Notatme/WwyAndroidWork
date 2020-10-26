@@ -20,6 +20,7 @@
             android:layout_height="55dip"
             android:layout_gravity="center_horizontal"
             />
+<!--        这里添加我们的图标-->
 
         <TextView
             android:layout_width="fill_parent"
@@ -34,7 +35,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="SHOW YOUR IDEAS"
+            android:text="Class check-in system"
             android:textColor="#ffffff"
             android:textSize="16sp" />
     </LinearLayout>
@@ -56,7 +57,16 @@
             android:layout_height="130dip"
             layout="@layout/layout_progress"
             android:visibility="gone" />
-
+        <CheckBox
+            android:id="@+id/cb_logSort"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/input_layout"
+            android:textColor="@color/colorWhite"
+            android:layout_marginStart="15dp"
+            android:text="教师登录"
+            android:layout_marginBottom="15dp"
+            />
         <TextView
             android:id="@+id/main_btn_login"
             android:layout_width="wrap_content"

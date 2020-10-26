@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.webkit.WebView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,13 +22,16 @@ import android.widget.Toast;
 
 import com.wwy.mysigninappnewest.buju.JellyInterpolator;
 import com.wwy.mysigninappnewest.impl.RegisterActivity;
+import com.wwy.mysigninappnewest.impl.SetSignActivity;
 import com.wwy.mysigninappnewest.impl.ZhuYeActivity;
 import com.wwy.mysigninappnewest.pojo.Person;
 import com.wwy.mysigninappnewest.pojo.Student;
+import com.wwy.mysigninappnewest.pojo.Teacher;
 
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
@@ -51,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout mName, mPsw;
     private EditText username;
     private EditText upassword;
+
+    private CheckBox isTea;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +74,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mInputLayout = findViewById(R.id.input_layout);
         username = findViewById(R.id.input_username);
         upassword=findViewById(R.id.input_userpassword);
+        isTea=findViewById(R.id.cb_logSort);
+
+
         mBtnLogin.setOnClickListener(this);
         mBtnResigter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,47 +103,87 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         inputAnimator(mInputLayout, mWidth, mHeight);
 
-        String name=username.getText().toString();
-        String password=upassword.getText().toString();
+        String name = username.getText().toString();
+        String password = upassword.getText().toString();
 
-        if(name.equals("")||password.equals("")){
+        if (name.equals("") || password.equals("")) {
             Toast.makeText(this, "帐号或密码不能为空", Toast.LENGTH_LONG).show();
             return;
         }
 
-        BmobQuery<Student> query=new BmobQuery<Student>();
-        query.addWhereEqualTo("selfNumber", name);              //这里使用手机号码登录
-        query.addWhereEqualTo("password", password);
-query.findObjects(new FindListener<Student>() {
-    @Override
-    public void done(List<Student> list, BmobException e) {
-       if(e==null){
-           String gname=list.get(0).getSelfNumber().toString();
-           String gpassword = list.get(0).getPassword().toString();
+        if (isTea.isChecked()) {
+            BmobQuery<Teacher> Tquery =new BmobQuery<Teacher>();
 
-           String name=username.getText().toString();
-           String password=upassword.getText().toString();
+            Tquery.addWhereEqualTo("selfNumber", name);
+            Tquery.addWhereEqualTo("password", password);
+            Tquery.findObjects(new FindListener<Teacher>() {
+                @Override
+                public void done(List<Teacher> list, BmobException e) {
+                    if (e == null) {
+                        String gname = list.get(0).getSelfNumber().toString();
+                        String gpassword = list.get(0).getPassword().toString();
+                        //list.get(0).getObjectId();
+                        String name = username.getText().toString();
+                        String password = upassword.getText().toString();
 
-           if(gname.equals(name)&&gpassword.equals(password))
-           {
-               Intent seccess = new Intent();
-//               seccess.setClass(MainActivity.this, ThridActivity.class);
-               startActivity(new Intent(MainActivity.this,ZhuYeActivity.class));
-               Toast.makeText(MainActivity.this, "验证成功", Toast.LENGTH_LONG).show();
-               startActivity(seccess);
-           }
+                        if (gname.equals(name) && gpassword.equals(password)) {
 
-       }
-       else{
-           Toast.makeText(MainActivity.this, "帐号或密码有误", Toast.LENGTH_LONG).show();
-       }
+                            Intent seccess = new Intent();
+                            seccess.setClass(MainActivity.this, SetSignActivity.class);
+                            Bundle bundle = new Bundle();     //简单参数传递objectId
+                            bundle.putString("objectID",list.get(0).getObjectId());
+                            seccess.putExtras(bundle);
+                            startActivity(seccess);
+                            //startActivity(new Intent(MainActivity.this, ZhuYeActivity.class));
+                            Toast.makeText(MainActivity.this, "验证成功", Toast.LENGTH_LONG).show();
 
+                        }
 
-}
-});
-
+                    } else {
+                        Toast.makeText(MainActivity.this, "帐号或密码有误", Toast.LENGTH_LONG).show();
+                    }
 
 
+                }
+            });
+
+
+        }
+
+        else{
+            BmobQuery<Student> Squery = new BmobQuery<Student>();
+
+            Squery.addWhereEqualTo("selfNumber", name);              //这里使用手机号码登录
+            Squery.addWhereEqualTo("password", password);
+            Squery.findObjects(new FindListener<Student>() {
+                @Override
+                public void done(List<Student> list, BmobException e) {
+                    if (e == null) {
+                        String gname = list.get(0).getSelfNumber().toString();
+                        String gpassword = list.get(0).getPassword().toString();
+                      //  list.get(0).getObjectId();
+                        String name = username.getText().toString();
+                        String password = upassword.getText().toString();
+                        //Toast.makeText(MainActivity.this, "已经进入咯", Toast.LENGTH_LONG).show();
+                        if (gname.equals(name) && gpassword.equals(password)) {
+                             Intent seccess = new Intent();
+                           seccess.setClass(MainActivity.this, ZhuYeActivity.class);
+                           Bundle bundle = new Bundle();     //简单参数传递objectId
+                            bundle.putString("objectID",list.get(0).getObjectId());
+                            seccess.putExtras(bundle);
+                           startActivity(seccess);
+                            Toast.makeText(MainActivity.this, "验证成功", Toast.LENGTH_LONG).show();
+                            //startActivity(seccess);
+                        }
+
+                    } else {
+                        Toast.makeText(MainActivity.this, "帐号或密码有误", Toast.LENGTH_LONG).show();
+                    }
+
+
+                }
+            });
+        }
     }
 
 
