@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".impl.ZhuYeActivity"></activity>
+        <activity android:name=".TeacherHomeActivity"></activity>
+        <activity android:name=".impl.ZhuYeActivity" />
         <activity android:name=".impl.RegisterActivity" />
 
         <provider
@@ -31,6 +32,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.king.zxing.CaptureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CaptureTheme"/>
+        <activity android:name=".GenerateQRCodeActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

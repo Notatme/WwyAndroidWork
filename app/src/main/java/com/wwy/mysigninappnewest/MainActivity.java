@@ -9,11 +9,9 @@ import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,18 +20,14 @@ import android.widget.Toast;
 import com.wwy.mysigninappnewest.buju.JellyInterpolator;
 import com.wwy.mysigninappnewest.impl.RegisterActivity;
 import com.wwy.mysigninappnewest.impl.ZhuYeActivity;
-import com.wwy.mysigninappnewest.pojo.Person;
 import com.wwy.mysigninappnewest.pojo.Student;
 
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.QueryListener;
-import cn.bmob.v3.listener.SaveListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
@@ -58,9 +52,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bmob.initialize(this, "397e951a8c743debcc77f678ccad8e87");
         mName = (LinearLayout) findViewById(R.id.input_layout_name);
         mPsw = (LinearLayout) findViewById(R.id.input_layout_psw);
-        initView();
-
+        getSupportActionBar().hide();
+        // 开发阶段登录
+        // initView();
+        skipLogin();
     }
+
+    private void skipLogin() {
+        startActivity(new Intent(MainActivity.this, TeacherHomeActivity.class));
+    }
+
     private void initView() {
         mBtnLogin = (TextView) findViewById(R.id.main_btn_login);
         mBtnResigter = (TextView) findViewById(R.id.main_btn_register);
@@ -72,13 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnResigter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
               Intent intent=new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
-
-
-
             }
         });
     }
@@ -117,7 +113,7 @@ query.findObjects(new FindListener<Student>() {
 
            if(gname.equals(name)&&gpassword.equals(password))
            {
-               Intent seccess = new Intent();
+               Intent seccess = new Intent(MainActivity.this, TeacherHomeActivity.class);
 //               seccess.setClass(MainActivity.this, ThridActivity.class);
                startActivity(new Intent(MainActivity.this,ZhuYeActivity.class));
                Toast.makeText(MainActivity.this, "验证成功", Toast.LENGTH_LONG).show();
