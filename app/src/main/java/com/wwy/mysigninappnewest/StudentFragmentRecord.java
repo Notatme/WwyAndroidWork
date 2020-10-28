@@ -15,23 +15,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeacherFragmentRecord extends Fragment {
-    Activity context;
+public class StudentFragmentRecord extends Fragment {
+    private Activity context;
     // 测试数据
-    protected List<TeacherRegistrationItem> getTestData() {
-        List<TeacherRegistrationItem> mRegistrationList;
-        mRegistrationList = new ArrayList<TeacherRegistrationItem>();
-        TeacherRegistrationItem item = new TeacherRegistrationItem();
-        item.setRegistrationCreator("王总");
+    protected List<StudentRegistrationItem> getTestData() {
+        List<StudentRegistrationItem> mRegistrationList;
+        mRegistrationList = new ArrayList<StudentRegistrationItem>();
+        StudentRegistrationItem item = new StudentRegistrationItem();
+        item.setRegistrationUser("王总");
         item.setRegistrationName("董事会签到");
-        item.setRegistrationNum("已签到10人");
+        item.setRegistrationStatus("已签到");
         mRegistrationList.add(item);
         return mRegistrationList;
     }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.teacher_fragment_record, container, false);
+        return inflater.inflate(R.layout.student_fragment_record, container, false);
     }
 
     @Override
@@ -40,10 +40,10 @@ public class TeacherFragmentRecord extends Fragment {
         context = getActivity();
 
         // 测试签到列表
-        RecyclerView recyclerView = (RecyclerView) context.findViewById(R.id.registration_list);
+        RecyclerView recyclerView = (RecyclerView) context.findViewById(R.id.registration_list_student);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
-        TeacherRegistrationAdapter adapter = new TeacherRegistrationAdapter(getTestData());
+        StudentRegistrationAdapter adapter = new StudentRegistrationAdapter(getTestData());
         recyclerView.setAdapter(adapter);
     }
 }

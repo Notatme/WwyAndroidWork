@@ -55,11 +55,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().hide();
         // 开发阶段登录
         // initView();
-        skipLogin();
+        skipLogin("student");
     }
 
-    private void skipLogin() {
-        startActivity(new Intent(MainActivity.this, TeacherHomeActivity.class));
+    private void skipLogin(String flag) {
+        if (flag == "teacher")
+            startActivity(new Intent(MainActivity.this, TeacherHomeActivity.class));
+        else
+            startActivity(new Intent(MainActivity.this, StudentHomeActivity.class));
     }
 
     private void initView() {

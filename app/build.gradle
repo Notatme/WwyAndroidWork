@@ -51,4 +51,5 @@ dependencies {
     api 'androidx.appcompat:appcompat:1.2.0'
     api 'com.google.zxing:core:3.4.1'
     implementation 'pub.devrel:easypermissions:3.0.0'
+
 }

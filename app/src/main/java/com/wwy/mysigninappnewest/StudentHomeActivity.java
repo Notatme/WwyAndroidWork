@@ -1,24 +1,28 @@
 package com.wwy.mysigninappnewest;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
+import com.king.zxing.Intents;
 
-public class TeacherHomeActivity extends AppCompatActivity {
+public class StudentHomeActivity extends AppCompatActivity {
     ActionBar actionBar;
     // 底部导航栏
     private TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.teacher_activity_home);
+        setContentView(R.layout.student_activity_home);
 
         initTab();
         // 手动触发一次tab切换事件
@@ -27,7 +31,7 @@ public class TeacherHomeActivity extends AppCompatActivity {
     }
 
     protected void initTab() {
-        tabLayout = findViewById(R.id.nav_bar);
+        tabLayout = findViewById(R.id.nav_bar_student);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -42,16 +46,16 @@ public class TeacherHomeActivity extends AppCompatActivity {
 
                 switch (position) {
                     case 0:
-                        Log.d("create fragment", "FragmentCreate");
-                        changeFragment(R.id.empty_fragment, new TeacherFragmentCreate());
+                        Log.d("check in fragment", "FragmentCreate");
+                        changeFragment(R.id.empty_fragment_student, new StudentFragmentCheckIn());
                         break;
                     case 1:
                         Log.d("record fragment", "FragmentRecord");
-                        changeFragment(R.id.empty_fragment, new TeacherFragmentRecord());
+                        changeFragment(R.id.empty_fragment_student, new StudentFragmentRecord());
                         break;
                     case 2:
                         Log.d("more fragment", "FragmentMore");
-                        changeFragment(R.id.empty_fragment, new TeacherFragmentMore());
+                        changeFragment(R.id.empty_fragment_student, new StudentFragmentMore());
                         break;
                 }
             }
@@ -79,5 +83,19 @@ public class TeacherHomeActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(changeLayoutId, fragment)
                 .commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && data != null) {
+            switch (requestCode) {
+                case 1:
+                    String result = data.getStringExtra(Intents.Scan.RESULT);
+                    Toast.makeText(StudentHomeActivity
+                            .this, result, Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
     }
 }
