@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MySignInApp(newest).iml" filepath="$PROJECT_DIR$/.idea/modules/MySignInApp(newest).iml" group="MySignInApp(newest)" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="MySignInApp(newest)/app" />
-    </modules>
-  </component>
-</project>
