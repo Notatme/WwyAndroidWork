@@ -9,12 +9,14 @@ import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
+//<<<<<<< HEAD
 import android.webkit.WebView;
 import android.widget.CheckBox;
+//=======
+//>>>>>>> 9331728138dd9a448f7206ec1246626478930578
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,7 +26,6 @@ import com.wwy.mysigninappnewest.buju.JellyInterpolator;
 import com.wwy.mysigninappnewest.impl.RegisterActivity;
 import com.wwy.mysigninappnewest.impl.SetSignActivity;
 import com.wwy.mysigninappnewest.impl.ZhuYeActivity;
-import com.wwy.mysigninappnewest.pojo.Person;
 import com.wwy.mysigninappnewest.pojo.Student;
 import com.wwy.mysigninappnewest.pojo.Teacher;
 
@@ -33,11 +34,8 @@ import java.util.List;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.QueryListener;
-import cn.bmob.v3.listener.SaveListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
@@ -64,9 +62,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bmob.initialize(this, "397e951a8c743debcc77f678ccad8e87");
         mName = (LinearLayout) findViewById(R.id.input_layout_name);
         mPsw = (LinearLayout) findViewById(R.id.input_layout_psw);
-        initView();
-
+        getSupportActionBar().hide();
+        // 开发阶段登录
+        // initView();
+        skipLogin("student");
     }
+
+    private void skipLogin(String flag) {
+        if (flag == "teacher")
+            startActivity(new Intent(MainActivity.this, TeacherHomeActivity.class));
+        else
+            startActivity(new Intent(MainActivity.this, StudentHomeActivity.class));
+    }
+
     private void initView() {
         mBtnLogin = (TextView) findViewById(R.id.main_btn_login);
         mBtnResigter = (TextView) findViewById(R.id.main_btn_register);
@@ -81,13 +89,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnResigter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
               Intent intent=new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
-
-
-
             }
         });
     }
@@ -127,7 +130,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         String password = upassword.getText().toString();
 
                         if (gname.equals(name) && gpassword.equals(password)) {
-
                             Intent seccess = new Intent();
                             seccess.setClass(MainActivity.this, SetSignActivity.class);
                             Bundle bundle = new Bundle();     //简单参数传递objectId
