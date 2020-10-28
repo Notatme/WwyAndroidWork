@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:padding="8dp"
+    android:background="@color/white"
+    android:layout_marginTop="8dp">
+    <TextView
+        android:id="@+id/registration_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="创建签到的名称"
+        android:gravity="center_vertical" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/registration_creator"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="王总"
+            android:gravity="center_vertical|left"
+            android:drawableStart="@drawable/ic_baseline_account_circle_24"
+            android:textSize="10sp"/>
+        <TextView
+            android:id="@+id/registration_num"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="今日签到0人"
+            android:textSize="10sp"
+            android:gravity="center_vertical|right" />
+    </LinearLayout>
+</LinearLayout>

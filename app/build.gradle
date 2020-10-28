@@ -43,4 +43,13 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // material design component
+    implementation 'com.google.android.material:material:1.3.0-alpha03'
+
+    // zxing lite
+    implementation 'com.king.zxing:zxing-lite:1.1.9-androidx'
+    api 'androidx.appcompat:appcompat:1.2.0'
+    api 'com.google.zxing:core:3.4.1'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
 }

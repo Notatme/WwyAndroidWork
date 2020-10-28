@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_create_qrcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                app:icon="@drawable/qr_code"
+                app:iconSize="80sp"
+                app:iconGravity="top"
+                app:iconTint="@color/black"
+                android:text="二维码签到"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                app:icon="@drawable/number"
+                app:iconSize="80sp"
+                app:iconGravity="top"
+                app:iconTint="@color/black"
+                android:text="数字签到"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+    </TableRow>
+</TableLayout>
