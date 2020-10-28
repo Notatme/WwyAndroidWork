@@ -17,7 +17,7 @@ import cn.bmob.v3.listener.UpdateListener;
 
 
 //这个页面用于老师设置签到码
-public class SetSignActivity extends AppCompatActivity implements View.OnClickListener{
+public class SetSignActivity extends AppCompatActivity implements View.OnClickListener {
 private Button SetCodeBtn;
 private EditText Code;
 private String ObId;
@@ -36,7 +36,7 @@ private String CCode;
     public void init(){
         Code=findViewById(R.id.Setcode);
         SetCodeBtn=findViewById(R.id.siginCode);
-
+//xdcfcggcgcvbhvhvh
 
     }
 
