@@ -1,5 +1,6 @@
 package com.wwy.mysigninappnewest;
 
+// 签到记录每一项的数据
 public class TeacherRegistrationItem {
     private String registrationName;
     private String registrationCreator;

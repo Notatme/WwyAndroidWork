@@ -30,11 +30,13 @@ public class StudentFragmentRecord extends Fragment {
     }
     @Nullable
     @Override
+    // 生成签到记录tab页视图
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.student_fragment_record, container, false);
     }
 
     @Override
+    // 当活动创建，渲染签到列表，与listview类似
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         context = getActivity();

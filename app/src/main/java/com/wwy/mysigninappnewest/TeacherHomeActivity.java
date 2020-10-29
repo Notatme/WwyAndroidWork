@@ -20,6 +20,7 @@ public class TeacherHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teacher_activity_home);
 
+        // 初始化tab切换事件
         initTab();
         // 手动触发一次tab切换事件
         tabLayout.selectTab(tabLayout.getTabAt(1));
@@ -29,6 +30,7 @@ public class TeacherHomeActivity extends AppCompatActivity {
     protected void initTab() {
         tabLayout = findViewById(R.id.nav_bar);
 
+        // 添加tab切换事件
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -40,17 +42,21 @@ public class TeacherHomeActivity extends AppCompatActivity {
                         .getIcon()
                         .setColorFilter(Color.parseColor("#2ed573"), PorterDuff.Mode.SRC_IN);
 
+                // 判断现在tab的位置，选择对应的tab页
                 switch (position) {
                     case 0:
                         Log.d("create fragment", "FragmentCreate");
+                        // 教师生成签到tab页
                         changeFragment(R.id.empty_fragment, new TeacherFragmentCreate());
                         break;
                     case 1:
                         Log.d("record fragment", "FragmentRecord");
+                        // 教师查看签到记录tab页
                         changeFragment(R.id.empty_fragment, new TeacherFragmentRecord());
                         break;
                     case 2:
                         Log.d("more fragment", "FragmentMore");
+                        // 教师更多信息tab页
                         changeFragment(R.id.empty_fragment, new TeacherFragmentMore());
                         break;
                 }
@@ -74,6 +80,7 @@ public class TeacherHomeActivity extends AppCompatActivity {
         });
     }
 
+    // 切换tab页函数
     protected void changeFragment(int changeLayoutId, Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()

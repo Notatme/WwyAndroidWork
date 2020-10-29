@@ -29,7 +29,9 @@ public class TeacherFragmentCreate extends Fragment {
         createQRCodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 添加点击事件跳转二维码生成页
                 Intent intent = new Intent(context, GenerateQRCodeActivity.class);
+                // 传递给生成页的字符串信息
                 intent.putExtra("QRCodeInfo", "Hello,World");
                 startActivity(intent);
             }
