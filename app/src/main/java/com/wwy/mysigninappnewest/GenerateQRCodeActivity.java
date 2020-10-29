@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.king.zxing.util.CodeUtils;
+import com.wwy.mysigninappnewest.impl.Data;
 
 public class GenerateQRCodeActivity extends AppCompatActivity {
     private ImageView ivCode;
@@ -26,6 +27,7 @@ public class GenerateQRCodeActivity extends AppCompatActivity {
 
     private void createQRCode(String content){
         Log.d("start createQRCode", "***************true**************");
+        Log.d("show number", "createQRCode: "+ Data.getQRCode());
         new Thread(() -> {
             //生成二维码相关放在子线程里面
             Bitmap bitmap =  CodeUtils.createQRCode(content,600);

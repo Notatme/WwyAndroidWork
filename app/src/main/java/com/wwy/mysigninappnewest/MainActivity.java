@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wwy.mysigninappnewest.buju.JellyInterpolator;
+import com.wwy.mysigninappnewest.impl.Data;
 import com.wwy.mysigninappnewest.impl.RegisterActivity;
 import com.wwy.mysigninappnewest.impl.SetSignActivity;
 import com.wwy.mysigninappnewest.impl.ZhuYeActivity;
@@ -62,10 +63,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bmob.initialize(this, "397e951a8c743debcc77f678ccad8e87");
         mName = (LinearLayout) findViewById(R.id.input_layout_name);
         mPsw = (LinearLayout) findViewById(R.id.input_layout_psw);
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
         // 开发阶段登录
-        // initView();
-        skipLogin("student");
+         initView();
+        //skipLogin("student");
     }
 
     private void skipLogin(String flag) {
@@ -131,9 +132,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         if (gname.equals(name) && gpassword.equals(password)) {
                             Intent seccess = new Intent();
-                            seccess.setClass(MainActivity.this, SetSignActivity.class);
+                            seccess.setClass(MainActivity.this, TeacherHomeActivity.class);
                             Bundle bundle = new Bundle();     //简单参数传递objectId
                             bundle.putString("objectID",list.get(0).getObjectId());
+                            Data.setObjectId(list.get(0).getObjectId());                 //使用普通类来保存项目的ID
                             seccess.putExtras(bundle);
                             startActivity(seccess);
                             //startActivity(new Intent(MainActivity.this, ZhuYeActivity.class));
@@ -169,9 +171,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         //Toast.makeText(MainActivity.this, "已经进入咯", Toast.LENGTH_LONG).show();
                         if (gname.equals(name) && gpassword.equals(password)) {
                              Intent seccess = new Intent();
-                           seccess.setClass(MainActivity.this, ZhuYeActivity.class);
+                           seccess.setClass(MainActivity.this, StudentHomeActivity.class);
                            Bundle bundle = new Bundle();     //简单参数传递objectId
                             bundle.putString("objectID",list.get(0).getObjectId());
+                            Data.setObjectId(list.get(0).getObjectId());                 //使用普通类来保存项目的ID
                             seccess.putExtras(bundle);
                            startActivity(seccess);
                             Toast.makeText(MainActivity.this, "验证成功", Toast.LENGTH_LONG).show();
@@ -180,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     } else {
                         Toast.makeText(MainActivity.this, "帐号或密码有误", Toast.LENGTH_LONG).show();
+
                     }
 
 

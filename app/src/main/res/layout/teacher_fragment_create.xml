@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -21,7 +23,7 @@
                 app:iconSize="80sp"
                 app:iconGravity="top"
                 app:iconTint="@color/black"
-                android:text="二维码签到"
+                android:text="设置二维码签到"
                 android:textColor="@color/black"/>
         </LinearLayout>
         <LinearLayout
@@ -29,6 +31,7 @@
             android:layout_height="wrap_content"
             android:padding="20dp">
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_create_Numbercode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
@@ -36,7 +39,7 @@
                 app:iconSize="80sp"
                 app:iconGravity="top"
                 app:iconTint="@color/black"
-                android:text="数字签到"
+                android:text="设置数字签到"
                 android:textColor="@color/black"/>
         </LinearLayout>
     </TableRow>

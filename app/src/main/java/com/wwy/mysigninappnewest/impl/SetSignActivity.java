@@ -2,13 +2,17 @@ package com.wwy.mysigninappnewest.impl;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.wwy.mysigninappnewest.MainActivity;
 import com.wwy.mysigninappnewest.R;
+import com.wwy.mysigninappnewest.TeacherHomeActivity;
+import com.wwy.mysigninappnewest.jiemian.NumberActivity;
 import com.wwy.mysigninappnewest.pojo.Student;
 import com.wwy.mysigninappnewest.pojo.Teacher;
 
@@ -26,8 +30,8 @@ private String CCode;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_sign);
-        Bundle bundle=this.getIntent().getExtras();              //接收从MainActivity到来的objectid
-        ObId=bundle.getString("objectID");
+       // Bundle bundle=this.getIntent().getExtras();              //接收从MainActivity到来的objectid
+        //ObId=bundle.getString("objectID");
         init();
         SetCodeBtn.setOnClickListener(this);
 
@@ -45,12 +49,20 @@ private String CCode;
         CCode=Code.getText().toString();
         Teacher teacher=new Teacher();
         teacher.setTqiandaocode(CCode);
-        teacher.update(ObId, new UpdateListener() {     //把签到码加入到数据库中
+        teacher.update(Data.getObjectId(), new UpdateListener() {     //把签到码加入到数据库中
 
             @Override
             public void done(BmobException e) {
                 if(e==null){
                     Toast.makeText(SetSignActivity.this, "设置签到码成功！", Toast.LENGTH_LONG).show();
+                    Intent seccess=new Intent();
+                    seccess.setClass(SetSignActivity.this, NumberActivity.class);
+                    Bundle bundle = new Bundle();     //简单参数传递objectId
+                    bundle.putString("number",CCode);
+                    seccess.putExtras(bundle);
+                    startActivity(seccess);
+                    SetSignActivity.this.finish();
+
                 }else{
                     Toast.makeText(SetSignActivity.this, "设置签到码失败！", Toast.LENGTH_LONG).show();
                 }

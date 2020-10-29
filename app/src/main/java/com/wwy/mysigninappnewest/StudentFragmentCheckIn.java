@@ -18,14 +18,17 @@ import androidx.fragment.app.Fragment;
 
 import com.king.zxing.CaptureActivity;
 import com.king.zxing.Intents;
+import com.wwy.mysigninappnewest.impl.ZhuYeActivity;
 
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class StudentFragmentCheckIn extends Fragment {
     private Activity context;
     private Button scanQRCodeBtn;
+    private Button numberCodeBtn;
     private String title;
     private boolean isContinuousScan;
+
     @Nullable
     @Override
     // 创建fragmeng视图
@@ -39,6 +42,7 @@ public class StudentFragmentCheckIn extends Fragment {
         super.onActivityCreated(savedInstanceState);
         context = getActivity();
         scanQRCodeBtn = (Button) context.findViewById(R.id.btn_scan_qrcode);
+        numberCodeBtn= (Button) context.findViewById(R.id.btn_number_qrcode);
         scanQRCodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,5 +61,15 @@ public class StudentFragmentCheckIn extends Fragment {
                 }
             }
         });
+
+
+        numberCodeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ZhuYeActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

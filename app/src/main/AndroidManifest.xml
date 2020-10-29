@@ -17,9 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".impl.SetSignActivity"></activity>
-        <activity android:name=".TeacherHomeActivity"></activity>
-        <activity android:name=".StudentHomeActivity"></activity>
+        <activity android:name=".jiemian.NumberActivity" />
+        <activity android:name=".impl.SetSignActivity" />
+        <activity android:name=".TeacherHomeActivity" />
+        <activity android:name=".StudentHomeActivity" />
         <activity android:name=".impl.ZhuYeActivity" />
         <activity android:name=".impl.RegisterActivity" />
 
@@ -37,10 +38,10 @@
         <activity
             android:name="com.king.zxing.CaptureActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/CaptureTheme"/>
-        <activity android:name=".GenerateQRCodeActivity"
+            android:theme="@style/CaptureTheme" />
+        <activity
+            android:name=".GenerateQRCodeActivity"
             android:screenOrientation="portrait" />
-
     </application>
 
 </manifest>

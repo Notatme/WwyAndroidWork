@@ -34,8 +34,8 @@ public class ZhuYeActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {    //这个页面用于学生签到
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zhu_ye);
-        Bundle bundle=this.getIntent().getExtras();              //接收objectid
-        ObId=bundle.getString("objectID");
+        //Bundle bundle=this.getIntent().getExtras();              //接收objectid
+       // ObId=bundle.getString("objectID");
       init();
     }
 
@@ -57,7 +57,6 @@ public class ZhuYeActivity extends AppCompatActivity implements View.OnClickList
 
         Tquery.addWhereEqualTo("name", TeanameStr);      //查询教师表中字段的属性值为“TeacherStr”的行
 
-        //Toast.makeText(ZhuYeActivity.this,Teaname.getText().toString(), Toast.LENGTH_LONG).show();
         Tquery.findObjects(new FindListener<Teacher>() {
             @Override
             public void done(List<Teacher> list, BmobException e) {
@@ -70,20 +69,23 @@ public class ZhuYeActivity extends AppCompatActivity implements View.OnClickList
                     if (code.equals(inputcode) ) {                 //判断验证码
                         Student student=new Student();
                         student.setQiandaocode(code);
-                        student.update(ObId, new UpdateListener() {     //把签到码加入到数据库中
+                        student.update(Data.getObjectId(), new UpdateListener() {     //把签到码加入到数据库中
 
                             @Override
                             public void done(BmobException e) {
                                 if(e==null){
-                                    Toast.makeText(ZhuYeActivity.this, "插入成功！", Toast.LENGTH_LONG).show();
+                                   // Toast.makeText(ZhuYeActivity.this, "插入成功！", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ZhuYeActivity.this, "验证码正确，签到成功！", Toast.LENGTH_LONG).show();
+                                    ZhuYeActivity.this.finish();
+
                                 }else{
-                                    Toast.makeText(ZhuYeActivity.this, "插入失败！", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(ZhuYeActivity.this, "签到失败！", Toast.LENGTH_LONG).show();
                                 }
                             }
 
                         });
 
-                        Toast.makeText(ZhuYeActivity.this, "验证码正确，签到成功！", Toast.LENGTH_LONG).show();
+
 
 
                     }
