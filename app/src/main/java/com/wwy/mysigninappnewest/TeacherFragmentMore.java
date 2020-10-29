@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 public class TeacherFragmentMore extends Fragment {
     @Nullable
     @Override
+    // 生成对应tab页视图
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.teacher_fragment_more, container, false);
     }

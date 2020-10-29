@@ -20,6 +20,7 @@ public class GenerateQRCodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qrcode);
 
         ivCode = findViewById(R.id.ivCode);
+        // 传递字符串，生成二维码
         createQRCode(getIntent().getStringExtra("QRCodeInfo"));
     }
 

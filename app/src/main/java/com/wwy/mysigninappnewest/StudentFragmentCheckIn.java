@@ -28,11 +28,13 @@ public class StudentFragmentCheckIn extends Fragment {
     private boolean isContinuousScan;
     @Nullable
     @Override
+    // 创建fragmeng视图
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.student_fragment_check_in, container, false);
     }
 
     @Override
+    // 当activity创建时,添加二维码扫描点击事件
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         context = getActivity();
@@ -41,7 +43,9 @@ public class StudentFragmentCheckIn extends Fragment {
             @Override
             public void onClick(View v) {
                 String[] perms = {Manifest.permission.CAMERA};
+                // 判断应用是否有拍摄权限
                 if (EasyPermissions.hasPermissions(context, perms)) {
+                    // 启动二维码扫描
                     ActivityOptionsCompat optionsCompat
                             = ActivityOptionsCompat.makeCustomAnimation(context, 18,4);
                     Intent intent = new Intent(context, CaptureActivity.class);
