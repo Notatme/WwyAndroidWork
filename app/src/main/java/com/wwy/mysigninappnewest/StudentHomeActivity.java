@@ -108,6 +108,9 @@ public class StudentHomeActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {      //扫描二维码返回的结果
         super.onActivityResult(requestCode, resultCode, data);
+
+        StudentFragmentCheckIn stu = new StudentFragmentCheckIn();
+
         if (resultCode == RESULT_OK && data != null) {
             switch (requestCode) {
                 case 1:
@@ -116,6 +119,7 @@ public class StudentHomeActivity extends AppCompatActivity {
                     //Toast.makeText(StudentHomeActivity.this, "签到成功", Toast.LENGTH_SHORT).show();
                     Student student=new Student();
                     student.setQiandaocode(result);
+                    student.setAdress(stu.address);
                     student.update(Data.getObjectId(), new UpdateListener() {     //把签到码加入到数据库中
 
                         @Override
